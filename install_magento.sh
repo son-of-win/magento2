@@ -81,3 +81,7 @@ sudo sh -c "echo '127.0.0.1 vinhvuvuot-dev.com' >> /etc/hosts"
     # }
 
 sudo service nginx restart
+
+# sau khi cài thêm module bằng composer
+# bin/magento setup:upgrade
+# bin/magento setup:di:compile

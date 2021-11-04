@@ -18,6 +18,3 @@ sudo apt-get install elasticsearch
 #     -Xmx128m
 # sudo service elasticsearch start
 
-# sau khi cài thêm module bằng composer
-# bin/magento setup:upgrade
-# bin/magento setup:di:compile

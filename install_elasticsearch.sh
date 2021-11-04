@@ -1,4 +1,4 @@
-install elasticsearch
+# install elasticsearch
 sudo apt install apt-transport-https 
 sudo apt install default-jre
 curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -

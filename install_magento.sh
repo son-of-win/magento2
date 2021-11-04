@@ -12,9 +12,9 @@ sudo service mysql start
 
 
 sudo mysql -u root -e "create database magento2;"
-sudo mysql -u root -e "create user 'magento'@'localhost' identified by 'magento';"
-sudo mysql -u root -e "grant all privileges on magento2.* to 'magento'@'%';"
-# sudo mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root'"";  
+# sudo mysql -u root -e "create user 'magento'@'localhost' identified by 'magento';"
+# sudo mysql -u root -e "grant all privileges on magento2.* to 'magento'@'%';"
+sudo mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';"  
 sudo mysql -u root -e "flush privileges;"
 
 
@@ -57,8 +57,8 @@ sudo composer install -v
 sudo service php7.3-fpm restart
 
 cd /var/www/html/magento2/bin
-sudo ./magento setup:install --base-url=http://vinhvuvuot-dev.com/ --db-host=localhost --db-name=magento2 --backend-frontname=admin --db-user=magento --db-password=magento --admin-firstname=admin --admin-lastname=admin --admin-email=admin@admin.com --admin-user=admin --admin-password=huuvuot2001 --language=en_US --currency=VND --timezone=Asia/Ho_Chi_Minh --use-rewrites=1 --search-engine=elasticsearch7 --elasticsearch-host=localhost --elasticsearch-port=9200
-# sudo ./magento setup:install --base-url=http://vinhvuvuot-dev.com/ --db-host=localhost --db-name=magento2 --backend-frontname=admin --db-user=root --db-password=root --admin-firstname=admin --admin-lastname=admin --admin-email=admin@admin.com --admin-user=admin --admin-password=huuvuot2001 --language=en_US --currency=VND --timezone=Asia/Ho_Chi_Minh --use-rewrites=1 --search-engine=elasticsearch7 --elasticsearch-host=localhost --elasticsearch-port=9200
+# sudo ./magento setup:install --base-url=http://vinhvuvuot-dev.com/ --db-host=localhost --db-name=magento2 --backend-frontname=admin --db-user=magento --db-password=magento --admin-firstname=admin --admin-lastname=admin --admin-email=admin@admin.com --admin-user=admin --admin-password=huuvuot2001 --language=en_US --currency=VND --timezone=Asia/Ho_Chi_Minh --use-rewrites=1 --search-engine=elasticsearch7 --elasticsearch-host=localhost --elasticsearch-port=9200
+sudo ./magento setup:install --base-url=http://vinhvuvuot-dev.com/ --db-host=localhost --db-name=magento2 --backend-frontname=admin --db-user=root --db-password=root --admin-firstname=admin --admin-lastname=admin --admin-email=admin@admin.com --admin-user=admin --admin-password=huuvuot2001 --language=en_US --currency=VND --timezone=Asia/Ho_Chi_Minh --use-rewrites=1 --search-engine=elasticsearch7 --elasticsearch-host=localhost --elasticsearch-port=9200
 sudo chown -R $USER:$USER /var/www/html/magento2/
 sudo chmod -R 777 /var/www/html/magento2/
 sudo sh -c "echo '127.0.0.1 vinhvuvuot-dev.com' >> /etc/hosts"

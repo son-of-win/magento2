@@ -25,26 +25,11 @@ services:
       - ../magento2:/var/www/html/magento2
     networks:
       - magento
-
-  php-fpm:
-    image: dmiseev/php-fpm7.3
-    container_name: php
-    build:
-      context: .
-      dockerfile: ./docker/php/Dockerfile
-    depends_on:
-      - db
-      - elasticsearch
-    volumes:
-      - ./docker/php/php.ini:/etc/php/7.3/fpm/php.ini
-      - ./docker/php/php_cli.ini:/etc/php/7.3/cli/php.ini
-      - ../magento2:/var/www/html/magento2
-    networks:
-      - magento
-
+  
   db:
     image: mysql:8.0
     restart: always
+    command: --default-authentication-plugin=mysql_native_password
     container_name: mysql
     env_file:
       - .env
@@ -79,6 +64,30 @@ services:
       - 9300:9300
     networks:
       - magento
+
+  php-fpm:
+    image: dmiseev/php-fpm7.3
+    container_name: php
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    links:
+      - db
+      - elasticsearch
+    depends_on:
+      - db
+      - elasticsearch
+    volumes:
+      - ./docker/php/php.ini:/etc/php/7.3/fpm/php.ini
+      - ./docker/php/php_cli.ini:/etc/php/7.3/cli/php.ini
+      - ../magento2:/var/www/html/magento2
+      - ./docker/php/install_magento.sh:/home/install_magento.sh
+    networks:
+      - magento
+
+  
+
+  
 
 
   

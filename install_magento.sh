@@ -1,13 +1,13 @@
 # !/bin/sh
 user=$USER
 sudo apt-get update
-sudo apt-get install nginx
+sudo apt-get -y install nginx
 
 cd /etc/nginx
 sudo sed -i "s/user www-data;/user $USER;/" nginx.conf
 cd /etc/init.d
 sudo service nginx start
-sudo apt-get install mysql-server-8.0 mysql-client-8.0
+sudo apt-get install -y mysql-server-8.0 mysql-client-8.0
 sudo service mysql start
 
 
@@ -20,11 +20,11 @@ sudo mysql -u root -e "flush privileges;"
 
 
 # install php7.3
-sudo apt-get install software-properties-common
+sudo apt-get install -y software-properties-common
 sudo add-apt-repository ppa:ondrej/php
 sudo apt update
-sudo apt install php7.3 libapache2-mod-php7.3 php7.3-common php7.3-gmp php7.3-curl php7.3-soap php7.3-bcmath php7.3-intl php7.3-mbstring php7.3-xmlrpc php7.3-mysql php7.3-gd php7.3-xml php7.3-cli php7.3-zip
-sudo apt install php7.3-fpm
+sudo apt install -y php7.3 libapache2-mod-php7.3 php7.3-common php7.3-gmp php7.3-curl php7.3-soap php7.3-bcmath php7.3-intl php7.3-mbstring php7.3-xmlrpc php7.3-mysql php7.3-gd php7.3-xml php7.3-cli php7.3-zip
+sudo apt install -y php7.3-fpm
 cd /etc/php/7.3/fpm
 sudo sed -i 's/memory_limit = 128M/memory_limit = 3G/' php.ini
 sudo sed -i 's/max_execution_time = 30/max_execution_time = 1800/' php.ini
@@ -45,9 +45,10 @@ sudo sed -i "s/listen.group = www-data/listen.group = $USER/" www.conf
 sudo service php7.3-fpm start
 
 cd /var/www/html
-sudo wget https://github.com/magento/magento2/archive/refs/tags/2.4.3.tar.gz
-sudo tar -xzvf 2.4.3.tar.gz
-sudo mv magento2-2.4.3/ magento2/
+# sudo wget https://github.com/magento/magento2/archive/refs/tags/2.4.3.tar.gz
+# sudo tar -xzvf 2.4.3.tar.gz
+# sudo mv magento2-2.4.3/ magento2/
+git clone https://github.com/vubom01/magento2.git
 cd magento2
 
 sudo curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/bin --filename=composer

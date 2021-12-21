@@ -48,7 +48,7 @@ cd /var/www/html
 # sudo wget https://github.com/magento/magento2/archive/refs/tags/2.4.3.tar.gz
 # sudo tar -xzvf 2.4.3.tar.gz
 # sudo mv magento2-2.4.3/ magento2/
-git clone https://github.com/vubom01/magento2.git
+sudo git clone https://github.com/vubom01/magento2.git
 cd magento2
 
 sudo curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/bin --filename=composer
